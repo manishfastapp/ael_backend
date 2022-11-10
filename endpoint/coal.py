@@ -30,12 +30,12 @@ class coal_selling_price(BaseModel):
 #endpoint
 #1 coal details
 @router.post("/coal/stock")
-async def coal_stock_detail(request:Request,limit:int,offset:int,payload:coal_filter):
+async def coal_stock_detail(request:Request,payload:coal_filter):
    #prework
    payload=payload.dict()   
    #query set
-   query="""select * from tbl_coal_purchase_detail where grade_id=:grade_id and port_id=:port_id and origin_id=:origin_id limit:limit offset:offset"""
-   values={"grade_id":payload['grade_id'],"port_id":payload['port_id'],"origin_id":payload['origin_id'],"limit":limit,"offset":offset}
+   query="""select * from tbl_coal_purchase_detail where grade_id=:grade_id and port_id=:port_id and origin_id=:origin_id """
+   values={"grade_id":payload['grade_id'],"port_id":payload['port_id'],"origin_id":payload['origin_id']}
    #query run
    response=await database_fetch_all(query,values)
    if response["status"]=="false":
@@ -46,12 +46,10 @@ async def coal_stock_detail(request:Request,limit:int,offset:int,payload:coal_fi
 
 #2 coal grade
 @router.get("/coal/grade")
-async def coal_grade(request:Request,limit:int,offset:int):
-   #prework
-   payload=payload.dict()   
+async def coal_grade(request:Request):  
    #query set
-   query="""select * from tbl_coal_grade limit:limit offset:offset"""
-   values={"limit":limit,"offset":offset}
+   query="""select * from tbl_coal_grade"""
+   values={}
    #query run
    response=await database_fetch_all(query,values)
    if response["status"]=="false":
@@ -63,12 +61,11 @@ async def coal_grade(request:Request,limit:int,offset:int):
 
 #3 coal origin
 @router.get("/coal/origin")
-async def coal_origin(request:Request,limit:int,offset:int):
-   #prework
-   payload=payload.dict()   
+async def coal_origin(request:Request,):
+    
    #query set
-   query="""select * from tbl_coal_origin limit:limit offset:offset"""
-   values={"limit":limit,"offset":offset}
+   query="""select * from tbl_coal_origin  """
+   values={}
    #query run
    response=await database_fetch_all(query,values)
    if response["status"]=="false":
@@ -80,12 +77,11 @@ async def coal_origin(request:Request,limit:int,offset:int):
 
 #3 coal port
 @router.get("/coal/port")
-async def coal_port(request:Request,limit:int,offset:int):
-   #prework
-   payload=payload.dict()   
+async def coal_port(request:Request):
+    
    #query set
-   query="""select * from tbl_coal_port limit:limit offset:offset"""
-   values={"limit":limit,"offset":offset}
+   query="""select * from tbl_coal_port  """
+   values={}
    #query run
    response=await database_fetch_all(query,values)
    if response["status"]=="false":
@@ -101,8 +97,8 @@ async def coal_competitor(request:Request,limit:int,offset:int,payload:coal_filt
    #prework
    payload=payload.dict()   
    #query set
-   query="""select * from tbl_coal_competitor where grade_id=:grade_id and port_id=:port_id and origin_id=:origin_id limit:limit offset:offset"""
-   values={"grade_id":payload['grade_id'],"port_id":payload['port_id'],"origin_id":payload['origin_id'],"limit":limit,"offset":offset}
+   query="""select * from tbl_coal_competitor where grade_id=:grade_id and port_id=:port_id and origin_id=:origin_id  """
+   values={"grade_id":payload['grade_id'],"port_id":payload['port_id'],"origin_id":payload['origin_id'],}
    #query run
    response=await database_fetch_all(query,values)
    if response["status"]=="false":

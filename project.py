@@ -23,24 +23,24 @@ from router import *
 from utility import *
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
-@project.middleware("http")
-async def middleware_request_check(request:Request,endpoint_function):
-   print({"message":"middleware started","endpoint":request.url})
+# @project.middleware("http")
+# async def middleware_request_check(request:Request,endpoint_function):
+#    print({"message":"middleware started","endpoint":request.url})
 
-   # public endpoint check
-   response = await is_public_endpoint(request)
-   if response['status']=="true":
-      response=await endpoint_function(request)
-      return response
+#    # public endpoint check
+#    response = await is_public_endpoint(request)
+#    if response['status']=="true":
+#       response=await endpoint_function(request)
+#       return response
 
-   #private endpoint check
-   response = await has_valid_token(request)
-   if response['status']=="true":
-      request.state.user_id=response['message']["user_id"]
-      response=await endpoint_function(request)
-      return response
+#    #private endpoint check
+#    response = await has_valid_token(request)
+#    if response['status']=="true":
+#       # request.state.user_id=response['message']["user_id"]
+#       response=await endpoint_function(request)
+#       return response
 
-   return JSONResponse(status_code=401, content=jsonable_encoder(response))
+#    return JSONResponse(status_code=401, content=jsonable_encoder(response))
 
 
 #6  database connect startup event

@@ -12,38 +12,37 @@ async def is_public_endpoint(request):
    request_url_resource="/".join(str(request.url).split("/")[3:])
    if (request.method,request_url_resource) in endpoint_public:
       response={"status":"true"}
-   response={"status":"true"}
    return response
 
 #2 has valid token
 import time,jwt
 async def has_valid_token(request):
    #prework
-   response={"status":"false"}
-   authorization=request.headers.get("Authorization")
-   #no auth
-   if authorization==None:
-      response={"status":"false","message":"no token found"}
-      return response
-   # no proper auth format
-   authorization_split=authorization.split(" ")
-   if len(authorization_split)!=2:
-      response={"status":"false","message":"pls send <Bearer> <token>"}
-      return response
-   # no proper auth format
-   if authorization_split[0]!="Bearer":
-      response={"status":"false","message":"pls send <Bearer> <token>"}
-      return response
-   #token decode
-   token=authorization_split[1]
-   print(token)
-   try:
-      claims=jwt.decode(token,config['token_secret_key'], algorithms=["HS256"])
-   except Exception as e:
-      response={"status":"false","message":e.args}
-      return response
-   #finally
-   response={"status":"true","message":claims}
+   response={"status":"true"}
+   # authorization=request.headers.get("Authorization")
+   # #no auth
+   # if authorization==None:
+   #    response={"status":"false","message":"no token found"}
+   #    return response
+   # # no proper auth format
+   # authorization_split=authorization.split(" ")
+   # if len(authorization_split)!=2:
+   #    response={"status":"false","message":"pls send <Bearer> <token>"}
+   #    return response
+   # # no proper auth format
+   # if authorization_split[0]!="Bearer":
+   #    response={"status":"false","message":"pls send <Bearer> <token>"}
+   #    return response
+   # #token decode
+   # token=authorization_split[1]
+   # print(token)
+   # try:
+   #    claims=jwt.decode(token,config['token_secret_key'], algorithms=["HS256"])
+   # except Exception as e:
+   #    response={"status":"false","message":e.args}
+   #    return response
+   # #finally
+   # response={"status":"true","message":claims}
    return response
 
 #3 token create

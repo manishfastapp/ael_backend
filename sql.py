@@ -102,10 +102,10 @@ port_id bigint,
 base_price float,
 sale_price float,
 total_quantity float,
-handling_charge float
-other_cost float
-premium_cost float
-fright_cost float
-rate_usd_inr float
+handling_charge float,
+other_cost float,
+premium_cost float,
+fright_cost float,
+rate_usd_inr float,
 data jsonb
 );
