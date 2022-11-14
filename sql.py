@@ -109,3 +109,54 @@ fright_cost float,
 rate_usd_inr float,
 data jsonb
 );
+
+
+
+
+
+
+
+CREATE TABLE tbl_demand(
+id BIGSERIAL PRIMARY KEY NOT NULL,
+created_at TIMESTAMPTZ NOT NULL DEFAULT Now(),
+is_active BOOLEAN NOT NULL DEFAULT true,
+created_by bigint,
+grade_id INTEGER,
+port_id INTEGER,
+origin_id INTEGER,
+importer VARCHAR (50),
+dispatch_qty float,
+net_physical_stock float,
+demandent_name VARCHAR (50),
+data jsonb
+)
+
+
+
+CREATE TABLE tbl_supply(
+id BIGSERIAL PRIMARY KEY NOT NULL,
+created_at TIMESTAMPTZ NOT NULL DEFAULT Now(),
+is_active BOOLEAN NOT NULL DEFAULT true,
+
+created_by bigint,
+
+grade_id INTEGER,
+port_id INTEGER,
+origin_id INTEGER,
+importer VARCHAR (50),
+stock_qty float,
+stock_status varchar(50),
+in_transit_vessel_name varchar(50),
+in_transite_eta_date  VARCHAR (50),
+in_transite_status varchar(50),
+in_transite_origin_id integer,
+in_transite_mines varchar(50),
+in_transite_qty float,
+
+demandent_name VARCHAR (50),
+
+data jsonb
+);
+
+
+

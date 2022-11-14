@@ -7,12 +7,12 @@ import json
 import uuid
 
 #1 public endpoint check
-async def is_public_endpoint(request):
-   response={"status":"false"}
-   request_url_resource="/".join(str(request.url).split("/")[3:])
-   if (request.method,request_url_resource) in endpoint_public:
-      response={"status":"true"}
-   return response
+# async def is_public_endpoint(request):
+#    response={"status":"false"}
+#    request_url_resource="/".join(str(request.url).split("/")[3:])
+#    if (request.method,request_url_resource) in endpoint_public:
+#       response={"status":"true"}
+#    return response
 
 #2 has valid token
 import time,jwt

@@ -10,5 +10,5 @@ from databases import Database
 database = Database('postgresql://{}:{}@{}:{}/{}'.format(config['db_user'],config['db_password'],config['db_host'],config['db_port'],config['db_name']),min_size=5,max_size=30)
 
 #3 public endpoints
-endpoint_public=[("GET",""),("GET","docs"),("GET","redoc"),("GET","openapi.json"),("GET","coal/grade"),("GET","coal/port"),("GET","coal/origin")]
+endpoint_public=[("GET",""),("GET","docs"),("GET","redoc"),("GET","openapi.json"),("GET","coal/grade"),("GET","coal/port"),("GET","coal/origin"),("PUT","coal/demand/")]
 
