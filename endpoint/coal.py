@@ -227,7 +227,7 @@ async def coal_supply_update(request:Request, id:int, payload:supply):
    #prework
    payload=payload.dict()   
    #query set
-   query="""update into tbl_supply set is_active='false' where id=:id"""
+   query="""update tbl_supply set is_active='false' where id=:id"""
    values={"id":id}
    #query run
    response=await database_execute(query,values)
